@@ -1,0 +1,11 @@
+---
+- hosts: all
+  sudo: true
+  vars:
+    doc_root: /vagrant
+    user_var: ubuntu
+    sys_packages: ["git"]
+    r_packages: ["rjson", "rPython", "plyr", "psych", "reshape2", "stringr", "jsonlite"]
+  roles:
+    - init
+    - r

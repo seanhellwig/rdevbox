@@ -1,0 +1,8 @@
+# Credit goes to http://svendvanderveken.wordpress.com/2014/02/25/snippet-to-install-r-packages-with-ansible/
+---
+- name: Making sure R is installed
+  apt: pkg=r-base state=installed
+
+- name: Add R packages
+  command: /usr/bin/Rscript --slave --no-save --no-restore-history -e "if (! ('{{item}}' %in% installed.packages()[,'Package'])) install.packages(pkgs=\"{{item}}\", repos=c('http://cran.freestatistics.org'))"
+  with_items: r_packages
